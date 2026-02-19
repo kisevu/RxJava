@@ -22,5 +22,8 @@ package com.ameda.kisevu.reactive;
 *    execute or return the response. Otherwise, the completed response from the blocking i/o or the operation is put to the queue and scheduled
 *    for execution by the event loop.
 *  - This is how the event loop can execute millions of requests because it is not blocking.
-*  -  How the event loop remembers who made the call or the request. The webflux works with the callbacks and other mechanisms.
+*  -  How the event loop remembers who made the call or the request. The web-flux works with the callbacks and other mechanisms.
+*   - We do not have the Dispatcher handler for netty but rather the Dispatcher handler, which is like a front controller -HttpWebHandlerAdapter
+*
+*   - specifying the number of event loops to create include the following in the VM Options in variables   -Dreactor.netty.ioWorkerCount=1 as a VM argument
 * */

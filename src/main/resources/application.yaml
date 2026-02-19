@@ -1,3 +1,14 @@
 spring:
   application:
     name: reactive
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+    reactor:
+      netty:
+        http:
+          server: DEBUG
+      channel: DEBUG

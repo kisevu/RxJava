@@ -1,5 +1,6 @@
 package com.ameda.kisevu.reactive.services;
 
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
@@ -11,9 +12,7 @@ public class FluxAndMonoServices {
     public static void main(String[] args) {
 
         FluxAndMonoServices obj = new FluxAndMonoServices();
-        obj.fluxFamilyMap().subscribe((value)-> {
-             log.info(" Name -> {}", value);
-        });
+        obj.fluxFamilyfilter().subscribe(System.out::println);
     }
 
     /**
@@ -26,6 +25,32 @@ public class FluxAndMonoServices {
                 "Judith Nyangiya Kisevu","Pers Lindoe Kisevu"))
                 .map(String::toUpperCase)
                 .log();
+    }
+
+    /**
+    * filter() operator
+    * */
+    public Flux<Person> fluxFamilyfilter(){
+        return Flux.fromIterable(List.of(
+                new Person("Kevin",29),
+                new Person("Judith",27),
+                new Person("Lindoe",2)
+        )).filter( person -> {
+            if ( person.getAge() < 20 ){
+                return true;
+            }
+            return false;
+        }).log();
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @ToString
+    static class Person {
+        private String name;
+        private int age;
     }
 
 

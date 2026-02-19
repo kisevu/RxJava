@@ -16,4 +16,15 @@ class FluxAndMonoServicesTest {
                 .verifyComplete();
 
     }
+
+    @Test
+    void fluxFamilyFilter(){
+        var fluxFamilyfilter = fluxAndMonoServices.fluxFamilyfilter();
+        StepVerifier.create(fluxFamilyfilter)
+                .expectNext(FluxAndMonoServices.Person.builder()
+                        .name("Lindoe")
+                        .age(2)
+                        .build())
+                .verifyComplete();
+    }
 }

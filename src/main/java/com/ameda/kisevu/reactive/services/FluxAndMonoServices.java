@@ -11,13 +11,23 @@ public class FluxAndMonoServices {
     public static void main(String[] args) {
 
         FluxAndMonoServices obj = new FluxAndMonoServices();
-        obj.fluxFamily().subscribe((value)-> {
+        obj.fluxFamilyMap().subscribe((value)-> {
              log.info(" Name -> {}", value);
         });
     }
 
-    public Flux<String> fluxFamily(){
+    /**
+     * Operators: We have got different operators to use in Flux and Mono
+     *  a) map()  used to transfer data you are getting into a different form of data but same publisher Flux. i.e String, Integer etc.
+     *
+     * */
+    public Flux<String> fluxFamilyMap(){
         return Flux.fromIterable(List.of("Kevin Ameda Kisevu",
-                "Judith Nyangiya Kisevu","Pers Lindoe Kisevu")).log();
+                "Judith Nyangiya Kisevu","Pers Lindoe Kisevu"))
+                .map(String::toUpperCase)
+                .log();
     }
+
+
+
 }

@@ -3,17 +3,16 @@ package com.ameda.kisevu.reactive.services;
 import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
 class FluxAndMonoServicesTest {
 
     FluxAndMonoServices  fluxAndMonoServices = new FluxAndMonoServices();
 
     @Test
-    void fluxFamily() {
-        var familyFlux = fluxAndMonoServices.fluxFamily();
+    void fluxFamilyMap() {
+        var familyFlux = fluxAndMonoServices.fluxFamilyMap();
         StepVerifier.create(familyFlux)
-                .expectNext("Kevin Ameda Kisevu","Judith Nyangiya Kisevu",
-                        "Pers Lindoe Kisevu")
+                .expectNext("KEVIN AMEDA KISEVU","JUDITH NYANGIYA KISEVU",
+                        "PERS LINDOE KISEVU")
                 .verifyComplete();
 
     }

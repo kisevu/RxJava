@@ -27,4 +27,12 @@ class FluxAndMonoServicesTest {
                         .build())
                 .verifyComplete();
     }
+
+    @Test
+    void fluxFruitsFlatMap(){
+        var fluxFruitsFlatMap = fluxAndMonoServices.fluxFruitsFlatMap();
+        StepVerifier.create(fluxFruitsFlatMap)
+                .expectNextCount(18)
+                .verifyComplete();
+    }
 }

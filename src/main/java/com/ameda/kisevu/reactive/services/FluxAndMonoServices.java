@@ -12,7 +12,7 @@ public class FluxAndMonoServices {
     public static void main(String[] args) {
 
         FluxAndMonoServices obj = new FluxAndMonoServices();
-        obj.fluxFamilyfilter().subscribe(System.out::println);
+        obj.fluxFruitsFlatMap().subscribe(System.out::println);
     }
 
     /**
@@ -41,6 +41,16 @@ public class FluxAndMonoServices {
             }
             return false;
         }).log();
+    }
+
+    /**
+    * flatmap() operator
+    * */
+
+    public Flux<String> fluxFruitsFlatMap(){
+        return Flux.fromIterable(List.of("Mango","Pineapple","Kiwi"))
+                .flatMap( str -> Flux.just(str.split("")))
+                .log();
     }
 
     @Data

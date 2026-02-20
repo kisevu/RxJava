@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 
 @Slf4j
 public class FluxAndMonoServices {
@@ -102,6 +103,19 @@ public class FluxAndMonoServices {
                         )))
                 .log();
     }
+
+    /**
+     * transform() operator
+    * */
+
+    public Flux<String> fluxFruitTransform( int num ){
+        Function<Flux<String>,Flux<String>> filteredData
+                =  data -> data.filter(d -> d.length() > num);
+       return  Flux.fromIterable(List.of("Mango","Apple","Orange"))
+                .transform(filteredData)
+                .log();
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

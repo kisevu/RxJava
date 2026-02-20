@@ -69,4 +69,12 @@ class FluxAndMonoServicesTest {
                 .expectNextCount(5)
                 .verifyComplete();
     }
+
+    @Test
+    void fluxFruitTransform() {
+      var fluxTransform  = fluxAndMonoServices.fluxFruitTransform(5);
+      StepVerifier.create(fluxTransform)
+              .expectNext("Orange")
+              .verifyComplete();
+    }
 }

@@ -142,6 +142,24 @@ public class FluxAndMonoServices {
                 .log();
     }
 
+    /**
+    * How to combine different reactive streams types
+     * How to combine the two fluxes or two monos.
+     *  concat() and concatWith() operators
+    * */
+
+    public Flux<String> fruitsFluxConcat(){
+        var fruits = Flux.just("Mango","Oranges");
+        var vegies = Flux.just("kales","cabbages");
+        return Flux.concat(fruits, vegies);
+    }
+
+    public Flux<String> fruitsFluxConcatWith(){
+        var fruits = Flux.just("Mango","Oranges");
+        var vegies = Flux.just("kales","cabbages");
+        return fruits.concatWith(vegies);
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

@@ -93,4 +93,20 @@ class FluxAndMonoServicesTest {
                 .expectNext("Pineapple","Jack fruit","Plantain")
                 .verifyComplete();
     }
+
+    @Test
+    void fruitsFluxConcat() {
+        var fluxTransform  = fluxAndMonoServices.fruitsFluxConcat();
+        StepVerifier.create(fluxTransform)
+                .expectNext("Mango","Oranges","kales","cabbages")
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitsFluxConcatWith() {
+        var fluxTransform  = fluxAndMonoServices.fruitsFluxConcat();
+        StepVerifier.create(fluxTransform)
+                .expectNext("Mango","Oranges","kales","cabbages")
+                .verifyComplete();
+    }
 }

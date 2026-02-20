@@ -1,7 +1,10 @@
 package com.ameda.kisevu.reactive.services;
 
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import java.util.List;
 
 class FluxAndMonoServicesTest {
 
@@ -14,7 +17,6 @@ class FluxAndMonoServicesTest {
                 .expectNext("KEVIN AMEDA KISEVU","JUDITH NYANGIYA KISEVU",
                         "PERS LINDOE KISEVU")
                 .verifyComplete();
-
     }
 
     @Test
@@ -41,6 +43,14 @@ class FluxAndMonoServicesTest {
         var fluxFruitsFlatMap = fluxAndMonoServices.fluxFruitFlatMapAsync();
         StepVerifier.create(fluxFruitsFlatMap)
                 .expectNextCount(20)
+                .verifyComplete();
+    }
+
+    @Test
+    void monoFruitFlatMap() {
+        var listMono = fluxAndMonoServices.monoFruitFlatMap();
+        StepVerifier.create(listMono)
+                .expectNextCount(1)
                 .verifyComplete();
     }
 }

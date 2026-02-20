@@ -3,6 +3,7 @@ package com.ameda.kisevu.reactive.services;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.List;
@@ -65,6 +66,16 @@ public class FluxAndMonoServices {
                         .delayElements(Duration.ofMillis(
                                 new Random().nextInt(1000)
                         )))
+                .log();
+    }
+
+    /**
+    *
+    * */
+
+    public Mono<List<String>> monoFruitFlatMap(){
+        return Mono.just("Mango")
+                .flatMap( s ->  Mono.just(List.of(s.split(""))))
                 .log();
     }
 

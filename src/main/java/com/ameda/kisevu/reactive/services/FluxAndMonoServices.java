@@ -4,7 +4,9 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 public class FluxAndMonoServices {
@@ -12,7 +14,8 @@ public class FluxAndMonoServices {
     public static void main(String[] args) {
 
         FluxAndMonoServices obj = new FluxAndMonoServices();
-        obj.fluxFruitsFlatMap().subscribe(System.out::println);
+        obj.fluxFruitFlatMapAsync()
+                .subscribe(System.out::println);
     }
 
     /**
@@ -50,6 +53,18 @@ public class FluxAndMonoServices {
     public Flux<String> fluxFruitsFlatMap(){
         return Flux.fromIterable(List.of("Mango","Pineapple","Kiwi"))
                 .flatMap( str -> Flux.just(str.split("")))
+                .log();
+    }
+
+    /**
+     * flatmap async
+    * */
+    public Flux<String> fluxFruitFlatMapAsync(){
+        return Flux.fromIterable(List.of("Mango","watermelon","apple"))
+                .flatMap( str -> Flux.just(str.split(""))
+                        .delayElements(Duration.ofMillis(
+                                new Random().nextInt(1000)
+                        )))
                 .log();
     }
 

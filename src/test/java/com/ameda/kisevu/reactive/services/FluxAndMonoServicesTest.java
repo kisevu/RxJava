@@ -53,4 +53,20 @@ class FluxAndMonoServicesTest {
                 .expectNextCount(1)
                 .verifyComplete();
     }
+
+    @Test
+    void fluxFruitConcatMap() {
+       var fluxConcatMapAsync = fluxAndMonoServices.fluxFruitConcatMap();
+       StepVerifier.create(fluxConcatMapAsync)
+               .expectNextCount(13)
+               .verifyComplete();
+    }
+
+    @Test
+    void monoToFluxFlatMapMany() {
+        var fluxFlatMapMany = fluxAndMonoServices.monoToFluxFlatMapMany();
+        StepVerifier.create(fluxFlatMapMany)
+                .expectNextCount(5)
+                .verifyComplete();
+    }
 }

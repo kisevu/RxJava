@@ -70,7 +70,7 @@ public class FluxAndMonoServices {
     }
 
     /**
-    *
+    * Mono flatMap
     * */
 
     public Mono<List<String>> monoFruitFlatMap(){
@@ -79,6 +79,29 @@ public class FluxAndMonoServices {
                 .log();
     }
 
+    /**
+    * mono to flux (flatmapMany() operator)
+     *  When you want to work with flatmap() and want mono in return you will be using flatMap()
+     *  If you want to return change to Flux from Mono you will use flatMapMany()
+    * */
+
+    public Flux<String> monoToFluxFlatMapMany(){
+        return Mono.just("Mango")
+                .flatMapMany( s -> Flux.just(s.split("")))
+                .log();
+    }
+
+    /**
+    *  concatMap() this preserves the ordering unlike the flatMap()
+    * */
+    public Flux<String> fluxFruitConcatMap(){
+        return Flux.fromIterable(List.of("Mango","Peas","Kiwi"))
+                .concatMap( str -> Flux.just(str.split(""))
+                        .delayElements(Duration.ofMillis(
+                                new Random().nextInt(1000)
+                        )))
+                .log();
+    }
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

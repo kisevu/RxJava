@@ -77,4 +77,12 @@ class FluxAndMonoServicesTest {
               .expectNext("Orange")
               .verifyComplete();
     }
+
+    @Test
+    void fluxFruitDefaultIfEmpty() {
+        var fluxTransform  = fluxAndMonoServices.fluxFruitDefaultIfEmpty(7);
+        StepVerifier.create(fluxTransform)
+                .expectNext("Default")
+                .verifyComplete();
+    }
 }

@@ -116,6 +116,18 @@ public class FluxAndMonoServices {
                 .log();
     }
 
+    /**
+    *  defaultIfEmpty() operator , handle error scenario
+    * */
+    public Flux<String> fluxFruitDefaultIfEmpty( int num ){
+        Function<Flux<String>,Flux<String>> filteredData
+                =  data -> data.filter(d -> d.length() > num);
+        return  Flux.fromIterable(List.of("Mango","Apple","Orange"))
+                .transform(filteredData)
+                .defaultIfEmpty("Default")
+                .log();
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

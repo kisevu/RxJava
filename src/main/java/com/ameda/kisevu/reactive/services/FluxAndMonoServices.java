@@ -128,6 +128,20 @@ public class FluxAndMonoServices {
                 .log();
     }
 
+    /**
+    *  switchIfEmpty() operator
+    * */
+
+    public Flux<String> fluxFruitSwitchIfEmpty( int num ){
+        Function<Flux<String>,Flux<String>> filteredData
+                =  data -> data.filter(d -> d.length() > num);
+        return  Flux.fromIterable(List.of("Mango","Apple","Orange"))
+                .transform(filteredData)
+                .switchIfEmpty(Flux.just("Pineapple","Jack fruit","Plantain")
+                        .transform(filteredData))
+                .log();
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
